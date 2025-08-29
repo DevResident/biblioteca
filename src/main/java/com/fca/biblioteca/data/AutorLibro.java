@@ -1,10 +1,46 @@
 package com.fca.biblioteca.data;
 
-import lombok.*;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "autorlibro")
 public class AutorLibro {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idautorlibro")
     private int idAutorLibro;
+
+    @Column(name = "idautor")
     private int idAutor;
+
+    @Column(name = "idlibro")
     private int idLibro;
+
+    // Getters y setters
+
+    public int getIdAutorLibro() {
+        return idAutorLibro;
+    }
+
+    public void setIdAutorLibro(int idAutorLibro) {
+        this.idAutorLibro = idAutorLibro;
+    }
+
+    public int getIdAutor() {
+        return idAutor;
+    }
+
+    public void setIdAutor(int idAutor) {
+        this.idAutor = idAutor;
+    }
+
+    public int getIdLibro() {
+        return idLibro;
+    }
+
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
+    }
 }
+
