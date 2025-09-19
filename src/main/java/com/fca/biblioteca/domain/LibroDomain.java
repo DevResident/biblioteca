@@ -16,6 +16,22 @@ public class LibroDomain {
     @Autowired
     private LibroRepository libroRepository;
 
+    public List<Libro> buscarLibros(String titulo, String edicion) {
+        if (titulo == null || titulo.isEmpty() || edicion == null || edicion.isEmpty()){
+            return new ArrayList<>();
+        }
+
+        Predicate <Libro> filtroTitulo = Libro -> Libro.getTitulo().equals(titulo);
+        Predicate <Libro> filtroEdicion = Libro -> Libro.getEdicion().equals(edicion);
+
+        Predicate <Libro> filtroLibro = filtroTitulo.and(filtroEdicion);
+
+        return libroRepository.findAll()
+                .stream()
+                .filter(filtroLibro)
+                .collect(Collectors.toList());
+    }
+
     public List<Libro> buscarLibrosDisponibles(String titulo, String edicion) {
         if (titulo == null || titulo.isEmpty() || edicion == null || edicion.isEmpty()){
             return new ArrayList<>();
